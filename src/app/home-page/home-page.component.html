@@ -1,0 +1,43 @@
+<div class="header">
+  <a href="" (click)="click=true ">{{ title }}</a>
+
+  <div class="nav">
+    <button (click)="click=false; clearInput() ">Добавить заметку</button>
+
+    <button (click)="saveNote()">Сохранить</button>
+  </div>
+
+</div>
+
+<div class="box">
+
+  <div class="menu">
+    <ul *ngFor="let item of notes; let i = index" class="note" (click)="showText(i); click=true" >
+        {{item.noteTitle}}
+    </ul>
+  </div>
+
+  <div class="text">
+
+      <a [routerLink]="['note', id]"  *ngIf="click==true" class="noteTitle">
+        {{currentTitle}}
+      </a>
+
+      <p class='info' *ngIf="click==false">
+        Введите название заметки
+      </p>
+
+      <input type="text" *ngIf="click==false"  [(ngModel)]="currentTitle" class="inputTitle">
+
+      <div *ngIf="click==true" class="noteText">
+        {{currentText}}
+      </div>
+
+      <p class='info' *ngIf="click==false">
+        Введите текст заметки
+      </p>
+
+      <input type="text" *ngIf="click==false"  [(ngModel)]="currentText" class="inputText">
+  </div>
+
+</div>
